@@ -1,0 +1,299 @@
+html,
+body{
+    width: 100%;
+    background: #fefefe;
+}
+.drop-wap{
+    display: inline-block;
+    cursor: pointer;
+}
+.drop-wap.drop-xs{
+    padding: 0 10px;
+}
+.drop-wap.drop-lg{
+    padding: 0 20px;
+}
+.loginbar{
+    /* height: 34px; */
+    font-size: 13px;
+    background: #eee;
+    line-height: 34px;
+}
+.loginbar .drop-wap{
+    border-left: 1px solid #d2d2d2;
+}
+.loginbar .drop-wap:last-child{
+    border-right: 1px solid #d2d2d2;
+}
+
+.loginbar .bar-left .drop-wap,
+.loginbar .bar-right .drop-wap{
+    padding: 0 15px;
+    color: #666;
+}
+.loginbar .bar-left .drop-wap:hover,
+.loginbar .bar-right .drop-wap:hover{
+    color: #fff;
+    background: #F4A137;
+    border-color: #F4A137;
+}
+.loginbar .bar-right .drop-wap.active{
+    color: #fff;
+    background: #F4A137;
+    border-color: #F4A137;
+}
+.loginbar .bar-right .drop-wap .flag-name{
+    display: none;
+}
+.loginbar .bar-right .drop-wap.active .flag-name{
+    display: inline-block;
+}   
+
+
+/** header **/
+.header{
+    padding: 35px 0;
+}
+.header .logo{
+    width: auto;
+    height: 44px;
+}
+.header .search-row{
+    padding-left: 160px;
+    padding-right: 60px;
+    height: 44px;
+}
+.header .search-class{
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 160px;
+    padding: 0 20px;
+    background: #eee;
+    line-height: 44px;
+    border: 1px solid #e5e5e5;
+    border-right: none;
+}
+.header .search-btn{
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+    width: 60px;
+    background: #676767;
+    line-height: 44px;
+    border: 1px solid #e5e5e5;
+    border-left: none;
+    cursor: pointer;
+}
+.header .search-btn:hover{
+    background: #F4A137;
+}
+.header .search-input{
+    background: #fff;
+}
+#search-input{
+    width: 100%;
+    height: 44px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    padding: 6px 12px;
+    box-shadow: none;
+    outline: none;
+    font-size: 14px;
+}
+
+/** header-bottom **/
+.header-bottom{
+    background: #666666;
+    height: 52px;
+}
+.header-bottom .wrapper{
+    padding-left: 250px;
+}
+.header-bottom .submenu-btn{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #444;
+    color: #fff;
+    font-size: 16px;
+    line-height: 22px;
+    padding: 15px;
+    width: 250px;
+}
+.header-bottom .nav .nav-list{
+    padding: 15px 18px;
+    color: #fff;
+    line-height: 22px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.header-bottom .nav .nav-list:hover{
+    background: #898989;
+}
+.header-bottom .nav .nav-list:active{
+    background: #898989;
+}
+
+/** module-1 **/
+.module-1{
+    height: 410px;
+}
+.module-1 .wrapper{
+    padding-left: 250px;
+}
+.module-1 .slidebar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 410px;
+    padding: 7px 0;
+    padding-top: 0;
+    border-top: 3px solid #F4A137;
+    border-left: 1px solid #bbb;
+    border-right: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+}
+.module-1 .slidebar .slidebar-list{
+    padding: 0 24px;
+    height: 44px;
+    line-height: 44px;
+    cursor: pointer;
+}
+.module-1 .slidebar .slidebar-list:hover{
+    background: #F4A137;
+    color: #fff;
+}
+.module-1 .banner{
+    width: 630px;
+    height: 400px;
+}
+.module-1 .banner .banner-container,
+.module-1 .banner .banner-wrapper .banner-page-list img{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.module-1 .banner .banner-wrapper{
+    width: 300%;
+    height: 100%;
+}
+.module-1 .banner .banner-wrapper .banner-page-list{
+    float: left;
+    width: 630px;
+    height: 100%;
+}
+.module-1 .own{
+    width: 300px;
+    height: 100%;
+}
+
+.module-2 .module-title{
+    position: relative;
+    padding: 10px;
+    padding-top: 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    font-family: 'Oswald', Helvetica, Arial, sans-serif;
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+/* .module-2 .module-title::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left:0;
+    height: 100%;
+    width: 4px;
+    background: #666;
+} */
+.module-2 .module-title .more{
+    font-weight: 400;
+    color: #F4A137;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+.module-2 .module-title .more:hover{
+    font-weight: 600;
+    color: #F4A137;
+}
+.module-2 .module-title .more .fa{
+    font-size: 16px;
+    margin-left: 3px;
+}
+/** 配合使用 去掉col的左padding **/
+.col-wrapper{
+    margin-right: -20px;
+}
+.col-gather{
+    padding-left: 0;
+    padding-right: 20px;
+    margin-bottom: 20px;
+}
+.bg-wrapper{
+    padding: 15px;
+    border: 1px solid #bbb;
+}
+.module-2 .inner{
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    border-color: transparent;
+}
+
+.module-2 .inner .task-name{
+    width: 80%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: 400;
+}
+.module-2 .inner .task-account{
+    font-family: 'Oswald', Helvetica, Arial, sans-serif;
+    color: #F4A137;
+    font-size: 32px;
+    line-height: 100%;
+}
+.module-2 .inner .task-introduction{
+    position: relative;
+    color: #777;
+    font-size: 14px;
+    line-height: 1.5;
+    height: 63px;
+    overflow: hidden;
+    padding-bottom: 21px;
+    margin-bottom: 10px;
+}
+.module-2 .inner .task-introduction::after{
+    content: "......";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 21px;
+    width: 100%;
+    background: #fff;
+}
+.module-2 .inner .task-created .avatar{
+    width: 35px;
+    height: 35px;
+    margin-right: 5px;
+    display: inline-block;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.module-2 .inner .task-created .avatar img{
+    width: 100%;
+    height: 100%;
+}
+.module-2 .inner .task-created .created-date{
+    line-height: 35px;
+    font-size: 12px;
+    color: #999;
+}

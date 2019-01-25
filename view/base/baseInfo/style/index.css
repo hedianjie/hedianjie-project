@@ -1,0 +1,144 @@
+html, body{
+    height: 100%;
+}
+.page-layout{
+    height: 100%;
+    min-height: 825px;
+}
+.container{
+    background: #fff;
+    height: 100%;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+.slidebar{
+    border-right: 1px solid #ddd;
+    width: 200px;
+    height: 100%;
+    overflow: auto;
+}
+.slidebar >h5{
+    margin: 0;
+    padding: 17px 15px;
+    font-weight: 600;
+    font-size: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.slidebar-list{
+    padding: 0 15px;
+    height: 45px;
+    line-height: 45px;
+    background: linear-gradient(135deg, #fff 10%, #f0f0f0 100%);
+    border-bottom: 1px dashed #ddd;
+    color: #666
+}
+.slidebar-list > a{
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+.slidebar-list.active{
+    background-image: linear-gradient( 135deg, #F4A137 10%, rgb(243, 112, 4) 100%);
+    border-color: transparent;
+    color: #fffbfb;
+}
+.slidebar-list:hover{
+    background-image: linear-gradient( 135deg, #F4A137 10%, rgb(243, 112, 4) 100%);
+    border-color: transparent;
+    color: #fffbfb;
+}
+.main{
+    width: 998px;
+    height: 100%;
+    overflow: auto;
+}
+.main-header{
+    height: 45px;
+    line-height: 45px;
+    position: relative;
+    margin: 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 0 10px;
+    padding-left: 20px;
+}
+.main-header:before{
+    content:"";
+    position: absolute;
+    left: 10px;
+    top: 12px;
+    height: 21px;
+    width: 3px;
+    background: #F4A137;
+
+}
+.main-content{
+    padding: 10px;
+}
+.form-avatar{
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    vertical-align: middle;
+    position: relative;
+}
+.form-avatar::before{
+    content: '';
+    width: 2px;
+    height: 30px;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    margin-left: -1px;
+    overflow: hidden;
+    background: #999;
+    z-index: 1;
+}
+.form-avatar::after{
+    content: '';
+    height: 2px;
+    width: 30px;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    margin-top: -1px;
+    background: #999;
+    z-index: 1;
+}
+.form-avatar:hover{
+    border: 1px solid #F4A137;
+    box-shadow: 0 0 0 2px rgb(214, 123, 3, .2);
+}
+.form-avatar:hover::before{
+    background: #F4A137;
+}
+.form-avatar:hover::after{
+    background: #F4A137;
+}
+.form-avatar img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-height: 100%;
+    max-width: 100%;
+    z-index: 2;
+}
+.form-avatar input[type=file]{
+    opacity: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.step-form .btn{
+    width: 300px;
+}

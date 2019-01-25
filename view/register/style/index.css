@@ -1,0 +1,220 @@
+html, body{
+    height: 100%;
+}
+.page-layout{
+    height: 100%;
+    min-height: 825px;
+}
+.container{
+    height: 100%;
+    min-height: 615px;
+    background: url(https://tianpeng.zbjimg.com/tianpeng/task/猪小媒-注册页.jpg/origine/971f41df-1291-4a3e-ade0-6c14f14af412) 0 0 no-repeat;
+    background-size: cover;
+}
+.container .login-img{
+    width: 700px;
+    margin-top: 70px;
+}
+.container .login-box{
+    background: #fff;
+    width: 400px;
+    margin-top: 100px;
+    padding: 25px;
+    border: 1px solid #F4A137;
+}
+.login-box-header{
+    font-size: 18px;
+    color: #252B3A;
+    margin: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    line-height: 1;
+    border-bottom: 1px solid #ddd;
+}
+.login-box-form .input-file{
+    margin-bottom: 20px;
+}
+
+.login-box-form .input-file .input-file-text{
+    padding: 0 5px;
+    height: 36px;
+    border: 1px solid #A0A2A8;
+    border-radius: 2px;
+    outline: none;
+    width: 100%;
+    color: #666;
+    background: #fff;
+}
+.login-box-form .input-file .input-file-text:focus{
+    border-color: #F4A137;
+    /* box-shadow: 0 0 0 2px rgba(255,148,14,.2) */
+}
+/** input-icon **/
+.login-box-form .input-file.input-file-icon{
+    position: relative;
+}
+.login-box-form .input-file.input-file-button{
+    position: relative;
+}
+.login-box-form .input-file.input-file-icon .input-icon{
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    border-radius: 2px 0 0 2px;
+    width: 34px;
+    height: 34px;
+    background: #ddd;
+    line-height: 34px;
+    text-align: center;
+    vertical-align: middle;
+}
+.login-box-form .input-file.input-file-icon .input-button{
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    height: 34px;
+    background: #F4A137;
+    color: #fff;
+    line-height: 34px;
+    text-align: center;
+    font-size: 12px;
+    width: 85px;
+    cursor: pointer;
+    font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,Arial,sans-serif;
+}
+.login-box-form .input-file.input-file-icon .input-button.disabled{
+    background: #f7c484;
+}
+
+.login-box-form .input-file.input-file-icon .input-button:hover{
+    background: #ff940e;
+}
+.login-box-form .input-file.input-file-icon .input-button.disabled:hover{
+    background: #f7c484;
+}
+.login-box-form .input-file.input-file-icon .input-icon img{
+    width: auto;
+}
+.login-box-form .input-file.input-file-icon .input-file-text{
+    padding-left: 41px;
+}
+.login-box-form .input-file.input-file-button .input-file-text{
+    padding-right: 90px;
+}
+
+
+.login-box-form .remberme,
+.login-box-form .forgetpwd
+{
+    font-size: 12px;
+    color: #252B3A;
+    line-height: 18px;
+}
+.login-box-form .forgetpwd:hover{
+    color: #000;
+}
+.login-box-form .login-submit{
+    display: inline-block;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    background: #F4A137;
+    color: #fff;
+    border-radius: 4px;
+    text-align: center;
+    width: 100%;
+    line-height: 48px;
+    font-size: large;
+    transition: all .2s linear;
+    -webkit-transition: all .2s linear;
+    -ms-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -o-transition: all .2s linear;
+}
+.login-box-form .login-submit:hover{
+    background: #ff940e;
+    box-shadow: 0 0 0 2px rgba(255,148,14,.2);
+}
+.input-line{
+    position: relative;
+    text-align: center;
+}
+.input-line:after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #ddd;
+}
+.input-line .input-line-text{
+    position: relative;
+    display: inline-block;
+    padding: 0 7px;
+    font-size: 12px;
+    line-height: 16px;
+    color:#666A75;
+    background: #fff;
+    z-index: 1;
+}
+.login-methods li{
+    line-height: 0;
+    font-size: 0;
+}
+.login-methods .login-qq,
+.login-methods .login-wechat,
+.login-methods .login-weibo{
+    width: 25px;
+    height: 25px;
+    position: relative;
+    margin-right: 8px;
+    display: inline-block;
+    transition: all .2s linear;
+}
+.login-methods .login-qq:hover,
+.login-methods .login-wechat:hover,
+.login-methods .login-weibo:hover{
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+}
+
+.login-methods .login-qq{
+    background: url(https://as.zbjimg.com/static/login/widget/common/login-register/authorize-login/img/qq-circle_d2c7fa6.png) no-repeat
+}
+.login-methods .login-wechat{
+    background: url(https://as.zbjimg.com/static/login/widget/common/login-register/authorize-login/img/weixin-circle_871ea39.png) no-repeat;
+}
+.login-methods .login-weibo{
+    background: url(https://as.zbjimg.com/static/login/widget/common/login-register/authorize-login/img/weibo-circle_f9e1986.png) no-repeat;
+}
+
+.login-register{
+    font-size: 12px;
+    line-height: 25px;
+    color: #F4A137;
+    transition: all .2s linear;
+    -webkit-transition: all .2s linear;
+    -ms-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -o-transition: all .2s linear;
+}
+.login-register:hover{
+    color: #ff940e;
+    text-decoration: underline;
+}
+.promise:hover{
+    color: #333;
+    text-decoration: underline;
+}
+
+.alert-box{
+    margin-top: -10px;
+    margin-bottom: 10px;
+    display: none;
+}
