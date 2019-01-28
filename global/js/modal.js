@@ -15,8 +15,110 @@
 
 (function(){
 
+    var CustomTarget = function(){
+        this.handler = {};
+    }
+
+    CustomTarget.prototype.addEvent = function(type, fn){
+        if(utils.isTypeOf(fn, 'function')) {
+
+            if(!this.handler[type] || !$.isArray(this.handler[type])){
+                this.handler[type] = [];
+            }
+
+            this.handler[type].push(fn);
+
+        }
+    }
+
+    CustomTarget.prototype.trigger = function(type){
+        if(this.handler[type] && $.isArray(this.handler[type]) && this.handler[type].length){
+            var eventList = this.handler[type];
+            for(var i = 0; i < eventList.length; i++) {
+                utils.isTypeOf(eventList[i], 'function') ? eventList[i]() : null;
+            }
+        }
+    }
+
+    CustomTarget.prototype.removeEvent = function(type, fn){
+        if(utils.isTypeOf(fn, 'function') && this.handler[type] &&  $.isArray(this.handler[type]) && this.handler[type].length) {
+            
+            var eventList = this.handler[type];
+            for(var i = 0; i < eventList.length; i++) {
+
+                if(eventList[i] === fn) {
+                    eventList.splice(i, 1);
+                    break;
+                }
+                
+            }
+
+        }
+    }
+
+    var customTarget = new CustomTarget();
+
+
+    var inhert = function(child, parent){
+        var F = function(){};
+        F.prototype = parent.prototype;
+        child.prototype = new F();
+        child.prototype.constructor = child;
+    }
+
+
+    var BaseModal = function(){
+        // onStart
+        // onEnd
+        if(!this.onStart || !this.onEnd) {
+            throw '请添加开始结束字段名';
+            return;
+        }
+        var _this = this;
+        customTarget.addEvent(this.onEnd, function(){
+            _this.baseHide.call(_this);
+        });
+    }
+    BaseModal.prototype.baseShow = function(){
+        var _this = this;
+        if(!this.opacity){
+            this.opacity = $('<div class="h-modal-opacity"></div>');
+        }
+        this.opacity.bind('click', function(){
+            _this.hide();
+        });
+        $('body').append(this.opacity);
+        window.setTimeout(function(){
+            _this.opacity.addClass('show');
+            window.setTimeout(function(){
+                customTarget.trigger(_this.onStart);
+            }, 200);
+        }, 0);
+    }
+    BaseModal.prototype.baseHide = function(){
+        if(!this.opacity){
+            return;
+        }
+        var _this = this;
+        this.opacity.removeClass('show');
+        window.setTimeout(function(){
+            _this.opacity.remove();
+            _this.opacity = null;
+        }, 200)
+    }
+
+    /**
+     * 
+     * @param {*} id 
+     * @param {*} opt 
+     */
     var H_modal = function(id, opt){
-        this.ele = $(id);
+
+        var isString = utils.isTypeOf(id, 'string');
+
+        this.onStart = 'bs-on-start-' + (isString ? id : id.attr('id'));
+        this.onEnd = 'bs-on-end-' + (isString ? id : id.attr('id'));
+        this.ele = this.ele || isString ? $(id) : id;
         this.width = (opt && opt.width) || this.ele.data('width') || 500;
         // …………
         this.ele.width(this.width);
@@ -24,30 +126,21 @@
 
         var _this = this;
         this.ele.find('[data-methods=close]').bind('click', function(){
-            _this.ele.trigger('bs-beforeClose');
             _this.hide();
-        });
+        }); 
         this.ele.find('[data-methods=submit]').bind('click', function(){
             _this.ele.trigger('bs-beforeSubmit');
         });
-    }
-
-    var _proto = H_modal.prototype;
-
-    _proto.init = function(){
         var _this = this;
-        if(!this.opacity){
-            this.opacity = $('<div class="h-modal-opacity"></div>');
-            this.opacity.bind('click', function(){
-                _this.hide();
-            });
-        }
-        this.getPosition();
-        $('body').append(this.opacity);
-        $('body').append(this.ele);
+        BaseModal.prototype.constructor.call(this);
+        customTarget.addEvent(this.onStart, function(){
+            _this.modalShow.call(_this);
+        });
     }
 
-    _proto.getPosition = function(){
+    inhert(H_modal, BaseModal);
+
+    H_modal.prototype.getPosition = function(){
         this.eleH = this.ele.height();
         this.eleW = this.ele.width();
         this.ele.css({
@@ -55,59 +148,87 @@
             'marginLeft': -1 * this.eleW / 2 + 'px',
         });
     }
-
-    _proto.show = function(){
-
-        var _this = this;
-
-        _this.init();
-
-        window.setTimeout(function(){
-
-            _this.opacity.addClass('show');
-
-            window.setTimeout(function(){
-
-                _this.ele.addClass('show');
-
-            }, 200);
-
-        },12);
+    H_modal.prototype.modalShow = function(){
+        this.ele.addClass('show');
     }
-
-    _proto.hide = function(){
-
+    H_modal.prototype.show = function(){
+        this.getPosition();
+        this.baseShow();
+        $('body').append(this.ele);
+    }
+    H_modal.prototype.hide = function(isTrigger){
         var _this = this;
-
-        if(!_this.opacity){
-
-            return;
-
+        if(isTrigger === undefined || isTrigger) {
+            this.ele.trigger('bs-beforeClose');
         }
-
-        _this.ele.removeClass('show');
-
+        this.ele.removeClass('show');
         window.setTimeout(function(){
-
-            _this.opacity.removeClass('show');
-
-            window.setTimeout(function(){
-
-                _this.opacity.remove();
-
-                _this.opacity = null;
-
-            }, 200)
-
-        }, 300)
-
+            customTarget.trigger(_this.onEnd);
+        }, 300);
     }
-
-    _proto.on = function(type, fn){
+    H_modal.prototype.on = function(type, fn){
         this.ele.on(type, fn);
     }
 
+
+
+    var H_confirm = function(msg, callback, cancel){
+        var id = '#h-confirm-'+ new Date().getTime();
+        this.ele = $('<div class="h-modal" id="'+ id.replace('#', '') +'" data-width="550"><div class="h-modal-title"><h5>系统提示</h5><span class="h-modal-close" data-methods="close"><i class="fa fa-times"></i></span></div><div class="h-modal-body">是否确认当前操作？</div><div class="h-modal-footer"><span class="h-modal-button submit" data-methods="submit"><i class="fa fa-save"></i> 确认</span><span class="h-modal-button cancel" data-methods="close"><i class="fa fa-times"></i> 取消</span></div></div>');
+        $('body').append(this.ele);
+        this.callback = callback;
+        this.cancel = cancel;
+        msg ? this.ele.find('.h-modal-body').html(msg) : null;
+        H_modal.prototype.constructor.call(this, id);
+        this.initConfirm();
+    }
+
+    inhert(H_confirm, H_modal);
+
+    H_confirm.prototype.initConfirm = function(){
+        var _this = this;
+        this.show();
+        this.ele.on('bs-beforeClose', function(){
+            utils.isTypeOf(_this.cancel, 'function') ? _this.cancel() : null;
+            window.setTimeout(function(){
+                _this.ele.remove();
+                _this.ele = null;
+            }, 500);
+        });
+        this.ele.on('bs-beforeSubmit', function(){
+            utils.isTypeOf(_this.callback, 'function') ? _this.callback() : null;
+            _this.hide(false);
+        });
+    }
+
+    
+    var H_alert = function(msg){
+        var id = '#h-confirm-'+ new Date().getTime();
+        this.ele = $('<div class="h-modal" id="'+ id.replace('#', '') +'" data-width="550"><div class="h-modal-title"><h5>系统提示</h5><span class="h-modal-close" data-methods="close"><i class="fa fa-times"></i></span></div><div class="h-modal-body">是否确认当前操作？</div><div class="h-modal-footer"><span class="h-modal-button submit" data-methods="close"><i class="fa fa-save"></i> 确认</span></div></div>');
+        $('body').append(this.ele);
+        msg ? this.ele.find('.h-modal-body').html(msg) : null;
+        H_modal.prototype.constructor.call(this, id);
+        this.initAlert();
+    }
+
+    inhert(H_alert, H_modal);
+
+    H_alert.prototype.initAlert = function(){
+        this.show();
+    }
+
+    
+
+
     window.H_modal = H_modal;
+    window.H_confirm = function(msg, callback, cancel){
+        return new H_confirm(msg, callback, cancel);
+    }
+    window.H_alert = function(msg){
+        return new H_alert(msg);
+    }
+
+    
 
 })();
 
