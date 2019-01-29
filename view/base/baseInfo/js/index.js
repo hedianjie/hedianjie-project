@@ -2,6 +2,7 @@ var picModal = new H_modal('#editPhone');
 var picModal2 = new H_modal('#editEmail');
 var picModal3 = new H_modal('#editName');
 var step = new H_step('#stepPhone', {
+    size: 'sm',
     list: [
         {
             step: 1,
@@ -19,6 +20,7 @@ var step = new H_step('#stepPhone', {
     callback: function(index, status){ console.log(index, status); }
 });
 var step2 = new H_step('#stepEmail', {
+    size: 'sm',
     list: [
         {
             step: 1,

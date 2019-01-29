@@ -14,6 +14,7 @@
          *      ]
          * }
          * callback: function // 点击步骤回调
+         * size: 'sm'
          */
 
         if(!opt.list || !$.isArray(opt.list) || !opt.list.length){
@@ -21,6 +22,7 @@
             return;
         }
         this.opt = opt;
+        this.size = this.opt.size || 'default';
         this.ele = $(ele);
         this.index = opt.index || 0;
         this.list = {};
@@ -32,7 +34,7 @@
     var _proto = H_step.prototype;
 
     _proto.init = function(){
-        this.outer = $('<div class="step-container step-lay-sm"></div>');
+        this.outer = $('<div class="step-container step-lay-'+ this.size +'"></div>');
 
         for(var i = 0; i < this.opt.list.length; i++){
             var cur = this.opt.list[i];
