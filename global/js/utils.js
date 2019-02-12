@@ -447,3 +447,68 @@ var utils = {
         return new FormValidateData($(this), option);
     }
 })();
+
+(function(){
+
+    var NavRadio = function(id, option){
+        var ele = id ? $(id) : $('#navRadio');
+
+        if(!ele.length) {
+            throw new Error('You need a correct ID and the default ID is "navRadio"!');
+        }
+
+        this.radioGroup = ele.find('.nav-radio-group');
+        this.radioContent = ele.find('.nav-radio-content');
+        
+        this.opt = option || {};
+        this.gather = {};
+
+        this.index = this.opt.index || this.radioGroup.children().eq(0).data('type');
+        this.lastIndex = '';
+
+        this.init();
+    }
+
+    var _proto = NavRadio.prototype;
+
+    _proto.init = function(){
+        var _this = this;
+        
+        this.radioGroup.children().each(function(){
+            var $this = $(this);
+            var type = $this.data('type');
+            
+            _this.gather[type] = {
+                group: $this,
+                content: _this.radioContent.find('[data-type='+ type +']')
+            }
+
+            $this.bind('click', function(){
+                _this.change(type);
+            })
+        });
+
+        this.change(this.index);
+    }
+
+    _proto.change = function(index){
+        if(index === this.lastIndex){
+            return;
+        }
+        if(this.lastIndex){
+            this.gather[this.lastIndex].group.removeClass('active');
+            this.gather[this.lastIndex].content.hide();
+        }
+        this.gather[index].group.addClass('active');
+        this.gather[index].content.show();
+
+        this.lastIndex = index;
+
+        typeof this.opt.callback === 'function' ? this.opt.callback(index) : null;
+    }
+
+    $.fn.navRadio = function(option){
+        return new NavRadio($(this), option);
+    }
+
+})()
