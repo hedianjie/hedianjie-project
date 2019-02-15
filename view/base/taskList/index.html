@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/global/style/layout.css">
     <link rel="stylesheet" href="/global/style/modal.css">
     <link rel="stylesheet" href="/base/public.css">
-    <link rel="stylesheet" href="/base/publish/style/index.css">
+    <link rel="stylesheet" href="./style/index.css">
 </head>
 <body>
 
@@ -40,16 +40,27 @@
                     <div class="nav-radio" id="navRadio">
 
                         <div class="nav-radio-group">
-                            <span class="nav-radio-item" data-type="0">全部</span><!--
-                            --><span class="nav-radio-item" data-type="1">未开始</span><!--
-                            --><span class="nav-radio-item" data-type="2">进行中</span><!--
-                            --><span class="nav-radio-item" data-type="3">已完成</span>
+                            <span class="nav-radio-item" data-type="0">我发布的</span><!--
+                            --><span class="nav-radio-item" data-type="1">我接受的</span>
                         </div>
                         <div class="nav-radio-content">
-                            <div class="nav-radio-list" data-type="0"></div>
+                            <div class="nav-radio-list" data-type="0">
+                                <div class="publish-inner">
+                                    <div class="publish-list">
+                                        <h5 class="task-name m-t-0">这是一个小小的任务这是一个小小的任务</h5>
+                                        <div class="m-b-10">
+                                            <span class="task-money">￥1000</span>
+                                            <span class="task-region">长春</span>
+                                            <span class="task-actor">已有<span class="color-red">11</span>人投递</span>
+                                        </div>
+                                        <div class="row">
+                                            <span class="task-createTime pull-left">创建时间：2019-11-11 11:11:11</span>
+                                            <span class="task-browse pull-right"><i class="fa fa-eye"></i> 10031</span>
+                                        </div>
+                                </div>
+                            </div>
                             <div class="nav-radio-list" data-type="1"></div>
-                            <div class="nav-radio-list" data-type="2"></div>
-                            <div class="nav-radio-list" data-type="3"></div>
+                            
                         </div>
                     </div>
                 </div>
@@ -64,3 +75,4 @@
 <script src="/global/js/modal.js"></script>
 <script src="./js/index.js"></script>
 </html>
+

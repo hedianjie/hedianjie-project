@@ -5,13 +5,9 @@
         sendSMSVerification: '/api/user/sendSMSVerification',
     }
 
-
-
-
     var env = {
         sendFlag: true,
     }
-
 
     var $msgBtnTxt = $('#msgBtnTxt');
     var $form = $('#form');
@@ -47,7 +43,17 @@
                     return true;
                 }
                 else {
-                    alertBox.change('error', '请6-20个字母、数字、下划线密码！');
+                    alertBox.change('error', '请输入6-20个字母、数字、下划线密码！');
+                    return false;
+                }
+            },
+            username: function(val){
+                if(utils.isTypeOf(val, 'isUsername')){
+                    alertBox.hide();
+                    return true;
+                }
+                else {
+                    alertBox.change('error', '请输入字母开头，4-16位的密码！');
                     return false;
                 }
             },
@@ -75,15 +81,21 @@
                         data: data,
                         url: requireURL.create,
                         success: function(data){
-                            console.log(data);
+                            alertBox.change('success', '注册成功，2秒后跳转完善个人信息！');
+                            utils.setCookie('userInfo', JSON.stringify(data), true);
+                            window.setTimeout(function(){
+                                window.location.href = '/base/baseInfo/'
+                            }, 2000);
                         },
+                        error: function(err){
+                            alertBox.change('error', '服务器错误，请稍后再试！')
+                        }
                     })
                 }
             }
         }
 
     })
-
 
     var setSendTime = function(){
         // 已经发送过了 还在读秒
@@ -110,28 +122,32 @@
 
         s();
     }
-
     
     $msgBtnTxt.bind('click', function(){
         // 已经发送过了 还在读秒
         if(!env.sendFlag){
             return;
-        }
-
-        setSendTime();
+        } 
 
         var phone = $form.find('[name=phone]').val();
         if(!phone || !reg.phone.test(phone)){
             alertBox.change('error', '请填写正确的手机号!')
             return;
         }
+        else {
+            setSendTime();
+            alertBox.hide();
+        }
 
         utils.getAjax({
             type: 'GET',
             url: requireURL.sendSMSVerification,
             data: {phone: phone},
-            success: function(data){
-                console.log(data);
+            success: function(result){
+                console.log(result);
+            },
+            error: function(err){
+                alertBox.change('error', '服务器错误，请稍后再试！')
             }
         })
 

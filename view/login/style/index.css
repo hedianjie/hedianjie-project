@@ -149,3 +149,9 @@ html, body{
     color: #ff940e;
     text-decoration: underline;
 }
+
+.alert-box{
+    margin-top: -10px;
+    margin-bottom: 10px;
+    display: none;
+}

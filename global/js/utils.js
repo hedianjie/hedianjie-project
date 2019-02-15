@@ -1,5 +1,6 @@
 var reg = {
-    phone: /^1[34578]\d{9}$/,
+    username: /^[a-zA-z]\w{3,15}$/,
+    phone: /^1[345678]\d{9}$/,
     pwd: /^(\w|\.){8,16}$/,
     email: /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/
 }
@@ -21,6 +22,13 @@ var utils = {
             }
         }
         return ""
+    },
+
+    setCookie: function (name,value, path) { 
+        var Days = 30; 
+        var exp = new Date(); 
+        exp.setTime(exp.getTime() + Days*24*60*60*1000); 
+        document.cookie = name + "="+ escape (value) + ";"+ (path ? 'path=/;' : null) +"expires=" + exp.toGMTString(); 
     },
 
     /**
@@ -132,7 +140,7 @@ var utils = {
                 }
             },
             error: function (err) {
-                console.log(opt);
+                typeof error === 'function' ? error(err) : null;
             },
             complete: function () {
                 typeof complete === 'function' ? complete() : null;
@@ -286,6 +294,9 @@ var utils = {
       }
       case 'isEmail': {
         return val && reg.email.test(val);
+      }
+      case 'isUsername': {
+        return val && reg.username.test(val);
       }
       default : {
         return Object.prototype.toString.call(val).toLowerCase() === `[object ${type.toLowerCase()}]`;
@@ -495,7 +506,7 @@ var utils = {
         if(index === this.lastIndex){
             return;
         }
-        if(this.lastIndex){
+        if(this.lastIndex !== '' && this.lastIndex !== undefined && this.lastIndex !== null){
             this.gather[this.lastIndex].group.removeClass('active');
             this.gather[this.lastIndex].content.hide();
         }

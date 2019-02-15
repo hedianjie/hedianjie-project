@@ -62,3 +62,36 @@
 .step-form .btn{
     width: 300px;
 }
+
+.file-upload{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+.border-ddd{
+    border: 1px solid #ddd
+}
+.image-view{
+    border-radius: 3px;
+    overflow: hidden;
+}
+.image-view img{
+    display: inline-block;
+    width: auto;
+    height: auto;
+}
+.image-view-lg{
+    width: 150px;
+    height: 150px
+}
+.image-view-sm{
+    width: 100px;
+    height: 100px
+}
+.image-view-xs{
+    width: 50px;
+    height: 50px;
+}
