@@ -58,6 +58,17 @@
                 }
             },
 
+            email: function(val){
+                if(utils.isTypeOf(val, 'isEmail')){
+                    alertBox.hide();
+                    return true;
+                }
+                else {
+                    alertBox.change('error', '请填写一个有效的邮箱！');
+                    return false;
+                }
+            },
+
             'confirm-pwd': function(val){
                 if($form.find('[name=pwd]').val() == val){
                     alertBox.hide();

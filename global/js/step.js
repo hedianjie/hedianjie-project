@@ -96,7 +96,7 @@
             else {
                 status = 'waiting';
             }
-            _this.opt.callback(i, status)
+            typeof _this.opt.callback === 'function' ? _this.opt.callback(i, status) : null;
         });
         
         return ele;

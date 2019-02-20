@@ -29,21 +29,21 @@
                 <!-- 点击切换 -->
                 <div class="form-group m-b-15">
                     <label class="label">手机号：</label>
-                    <div class="con">155****2010<a href="javascript:void(0);" class="color-blue m-l-10 f-s-12">手机号不能用，使用邮箱更改？</a></div>
+                    <div class="con"><span id="p_modal_phone"></span><a id="change_to_email" href="javascript:void(0);" class="color-blue m-l-10 f-s-12" id="">手机号不能用，使用邮箱更改？</a></div>
                 </div>
                 <!-- 点击切换 -->
                 <div class="form-group m-b-15 hide">
                     <label class="label">邮箱：</label>
-                    <div class="con">1163486362@qq.com<a href="javascript:void(0);" class="color-blue m-l-10 f-s-12">邮箱不能用，使用手机号更改？</a></div>
+                    <div class="con"><span id="p_modal_email"></span><a id="change_to_phone" href="javascript:void(0);" class="color-blue m-l-10 f-s-12">邮箱不能用，使用手机号更改？</a></div>
                 </div>
                 <div class="form-group m-b-15 input-button">
                     <label class="label">验证码：</label>
-                    <span class="button">获取动态码</span>
-                    <input type="text" name="field" class="form-control" placeholder="输入6位动态码">
+                    <span id="p_modal_getCode0" class="button">获取动态码</span>
+                    <input id="p_modal_code0" type="text" name="field" class="form-control" placeholder="输入6位动态码">
                 </div>
                 <div class="form-group m-b-15">
                     <label class="label"></label>
-                    <div class="btn btn-large btn-primary"><i class="fa fa-success"></i> 下一步</div>
+                    <div id="p_modal_next0" class="btn btn-large btn-primary"><i class="fa fa-success"></i> 下一步</div>
                 </div>
             </div>
 
@@ -52,16 +52,16 @@
                 <!-- 新手机号： -->
                 <div class="form-group m-b-15">
                     <label class="label">新手机号：</label>
-                    <input type="text" name="field" class="form-control" placeholder="请输入新手机号">
+                    <input id="p_modal_newPhone" type="text" name="field" class="form-control" placeholder="请输入新手机号">
                 </div>
                 <div class="form-group m-b-15 input-button">
                     <label class="label">验证码：</label>
-                    <span class="button">获取动态码</span>
-                    <input type="text" name="field" class="form-control" placeholder="输入6位动态码">
+                    <span id="p_modal_getCode1" class="button">获取动态码</span>
+                    <input id="p_modal_code1" type="text" name="field" class="form-control" placeholder="输入6位动态码">
                 </div>
                 <div class="form-group m-b-15">
                     <label class="label"></label>
-                    <div class="btn btn-large btn-primary"><i class="fa fa-check"></i> 下一步</div>
+                    <div id="p_modal_next1" class="btn btn-large btn-primary next"><i class="fa fa-check"></i> 下一步</div>
                 </div>
             </div>
 
@@ -82,7 +82,7 @@
         <div class="h-modal-body">
             <div class="form-group">
                 <label class="label">用户名：</label>
-                <input type="text" name="field" class="form-control" placeholder="请输入用户名">
+                <input id="n_modal_name" type="text" name="name" class="form-control" placeholder="请输入用户名">
             </div>
         </div>
         <div class="h-modal-footer">
@@ -98,21 +98,25 @@
         </div>
         <div class="h-modal-body">
             <div class="col-md-12 m-b-10">
-                <span class="btn btn-primary"><i class="fa fa-cloud-upload"></i> 选择图片<input type="file" id="fileUpload" class="file-upload"></span>
+                <span class="btn btn-primary p-r"><i class="fa fa-cloud-upload"></i> 选择图片<input type="file" id="fileUpload" class="file-upload"></span>
             </div>
             <div class="col-md-9">
-                <div class="border-ddd"><img id="image" src="" alt="头像"></div>
+                <div class="image-viewport border-ddd"><img id="image" src="" alt=""></div>
             </div>
             <div class="col-md-3">
+                <h5 class="color-tip m-t-0"><i class="fa fa-eye"></i> 预览</h5>
                 <div class="image-view border-ddd image-view-lg m-b-10">
                     <img src="" alt="">
                 </div>
+                <p class="preview-tip">(150像素 * 150像素)</p>
                 <div class="image-view border-ddd image-view-sm m-b-10">
                     <img src="" alt="">
                 </div>
-                <div class="image-view border-ddd image-view-xs">
+                <p class="preview-tip">(100像素 * 100像素)</p>
+                <div class="image-view border-ddd image-view-xs m-b-10">
                     <img src="" alt="">
                 </div>
+                <p class="preview-tip">(50像素 * 50像素)</p>
             </div>
             <div class="row"></div>
         </div>
@@ -148,21 +152,21 @@
                         <!-- 手机号 -->
                         <div class="m-b-10 form-group form-indent">
                             <label class="label">账号：</label>
-                            <div class="con">hedianjie</div>
+                            <div class="con" id="username"></div>
 
                         </div>
                         
                         <!-- 手机号 -->
                         <div class="m-b-10 form-group form-indent">
                             <label class="label">手机号：</label>
-                            <div class="con">155****2010<a href="javascript:void(0);" class="color-blue m-l-10">更改</a></div>
+                            <div class="con"><span id="phone"></span><a href="javascript:void(0);" class="color-blue m-l-10" id="btnPhone">更改</a></div>
                             <!-- <span class="must">(必填)</span>
                             <input type="text" name="phone" class="form-control" placeholder="请填写手机号"> -->
                         </div>
                         <!-- 邮箱 -->
                         <div class="m-b-10 form-group form-indent">
                             <label class="label">邮箱：</label>
-                            <div class="con">1163486362@qq.com</div>
+                            <div class="con"><span id="email"></span></div>
                             <!-- <span class="must">(必填)</span>
                             <input type="text" name="email" class="form-control" placeholder="请填写邮箱"> -->
                         </div>
@@ -175,16 +179,17 @@
                             <span class="form-avatar">
                                 <img src="" class="image-view-outer" id="imageViewOuter" alt="头像">
                             </span>
+                            <span class="d-i-b m-l-5 color-tip f-s-12"><i class="fa fa-info-circle"></i> 点击头像编辑或切换头像</span>
                         </div>
                         <!-- 用户名 -->
                         <div class="m-b-10 form-group form-indent">
                             <label class="label">用户名：</label>
-                            <div class="con">一臭万年<a href="javascript:void(0);" class="color-blue m-l-10">更改</a></div>
+                            <div class="con"><span id="name"></span><a href="javascript:void(0);" class="color-blue m-l-10" id="btnName">更改</a></div>
                             <!-- <span class="must">(必填)</span>
                             <input type="text" name="name" class="form-control" placeholder="请填写用户名"> -->
                         </div>
                         <!-- 提交按钮 -->
-                        <div class="m-b-10 form-group"></div>
+                        <!-- <div class="m-b-10 form-group"></div> -->
                     </form>
                 </div>
             </div>
